@@ -1,6 +1,6 @@
 import Card from "@mui/material/Card";
 
-export default function CustomCard({ children, customClasses }) {
+export default function CustomCard({ children, customClasses, sx }) {
   return (
     <Card
       sx={{
@@ -9,6 +9,7 @@ export default function CustomCard({ children, customClasses }) {
         width: "100%",
         borderColor: "rgba(0,0,0,.1)",
         borderWidth: 0.7,
+        ...sx,
       }}
       className={customClasses}
     >
