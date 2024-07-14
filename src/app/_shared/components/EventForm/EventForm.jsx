@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm, FormProvider } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import FormInput from "@_shared/components/Input/Input";
 import Typography from "@mui/material/Typography";
@@ -12,7 +12,6 @@ import { useEffect } from "react";
 
 export default function EventForm({ event, isEditing, onSubmit }) {
   const methods = useForm({ defaultValues: { ...event } });
-  const router = useRouter();
 
   useEffect(() => {
     if (event) {
@@ -48,14 +47,15 @@ export default function EventForm({ event, isEditing, onSubmit }) {
             type="text"
             initialValue={event?.eventBrand}
           />
-          <div className="flex justify-between gap-4 mt-8">
-            <CustomButton
-              color={COLORS.RED}
-              variant={"outlined"}
-              label={"Volver"}
-              customClasses={"flex-1"}
-              onClick={() => router.push("/")}
-            />
+          <div className="flex gap-4 mt-8">
+            <Link href={"/"} className="flex-1">
+              <CustomButton
+                color={COLORS.RED}
+                variant={"outlined"}
+                label={"Volver"}
+                customClasses={"!w-full"}
+              />
+            </Link>
             <CustomButton
               type="submit"
               color={COLORS.GREEN}

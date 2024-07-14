@@ -1,13 +1,20 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
-
 import moment from "moment";
 
 import Typography from "@mui/material/Typography";
 import Input from "@mui/material/Input";
+import TextField from "@mui/material/TextField";
+
 import { COLORS } from "@_shared/export/constant";
 
 const VALIDATIONS = {
+  user: {
+    required: "El nombre de usuario es obligatorio",
+  },
+  password: {
+    required: "La constraseña es obligatoria",
+  },
   eventName: {
     required: "El nombre del evento es obligatorio",
     maxLength: {
@@ -38,6 +45,18 @@ const VALIDATIONS = {
       message: "El nombre de la marca debe tener al menos 5 caracteres",
     },
   },
+  clotheDescription: {
+    required: "La descripción de la prenda es obligatoria",
+    maxLength: {
+      value: 50,
+      message:
+        "La descripción de la prenda puede contener 50 caracteres como máximo",
+    },
+    minLength: {
+      value: 5,
+      message: "La descripción de la prenda debe tener al menos 5 caracteres",
+    },
+  },
 };
 
 export default function FormInput({
@@ -45,6 +64,8 @@ export default function FormInput({
   fieldId,
   type = "text",
   initialValue = null,
+  sx,
+  customClasses,
 }) {
   const { register, formState } = useFormContext();
 
@@ -53,13 +74,31 @@ export default function FormInput({
       <label htmlFor={fieldId}>
         <Typography variant="h6"> {label} </Typography>
       </label>
-      <Input
-        id={fieldId}
-        type={type}
-        sx={{ width: "400px" }}
-        error={formState.errors[fieldId]?.message}
-        {...register(fieldId, { ...VALIDATIONS[fieldId], value: initialValue })}
-      />
+      {type == "textarea" ? (
+        <TextField
+          id={fieldId}
+          multiline
+          sx={sx}
+          rows={6}
+          classes={customClasses}
+          {...register(fieldId, {
+            ...VALIDATIONS[fieldId],
+            value: initialValue,
+          })}
+        />
+      ) : (
+        <Input
+          id={fieldId}
+          type={type}
+          sx={{ width: "400px", ...sx }}
+          error={formState.errors[fieldId]?.message}
+          classes={customClasses}
+          {...register(fieldId, {
+            ...VALIDATIONS[fieldId],
+            value: initialValue,
+          })}
+        />
+      )}
       {formState.errors[fieldId] && (
         <Typography variant="body1" color={COLORS.RED}>
           {formState.errors[fieldId]?.message}{" "}

@@ -2,9 +2,9 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import CustomCard from "@_shared/components/Card/Card";
 
-export default function CustomModal({ open, handleModal, title, children }) {
+export default function CustomModal({ open, onClose, title, children }) {
   return (
-    <Modal open={open} onClose={handleModal}>
+    <Modal open={open} onClose={onClose}>
       <CustomCard
         customClasses={"!w-fit flex flex-col gap-12"}
         sx={{

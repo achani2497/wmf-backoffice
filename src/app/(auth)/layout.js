@@ -1,6 +1,9 @@
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import "./globals.css";
+import "../globals.css";
 import ScrollToTopFab from "@_shared/components/ScrollToTop/ScrollToTop";
+import Image from "next/image";
+
+import logo from "../../../public/WMF.svg";
 
 export const metadata = {
   title: "Create Next App",
@@ -11,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <AppRouterCacheProvider>
-        <body className="flex flex-col justify-around p-16">
+        <body className="flex flex-col justify-around p-16 min-h-screen">
           {children}
           <ScrollToTopFab />
         </body>
