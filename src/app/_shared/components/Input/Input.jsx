@@ -66,14 +66,12 @@ export default function FormInput({
   initialValue = null,
   sx,
   customClasses,
+  width = "400px",
 }) {
   const { register, formState } = useFormContext();
 
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor={fieldId}>
-        <Typography variant="h6"> {label} </Typography>
-      </label>
       {type == "textarea" ? (
         <TextField
           id={fieldId}
@@ -90,7 +88,7 @@ export default function FormInput({
         <Input
           id={fieldId}
           type={type}
-          sx={{ width: "400px", ...sx }}
+          sx={{ width, ...sx }}
           error={formState.errors[fieldId]?.message}
           classes={customClasses}
           {...register(fieldId, {
@@ -99,6 +97,14 @@ export default function FormInput({
           })}
         />
       )}
+      <label htmlFor={fieldId}>
+        <Typography
+          variant="h6"
+          className="!text-[14px] !font-light !tracking-wider !-mt-1 text-slate-600"
+        >
+          {label}
+        </Typography>
+      </label>
       {formState.errors[fieldId] && (
         <Typography variant="body1" color={COLORS.RED}>
           {formState.errors[fieldId]?.message}{" "}

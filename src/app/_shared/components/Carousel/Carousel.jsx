@@ -1,11 +1,10 @@
 import Image from "next/image";
 
 import Carousel from "react-material-ui-carousel";
-import Typography from "@mui/material/Typography";
 
 export default function CustomCarousel({ photos }) {
   return (
-    <Carousel stopAutoPlayOnHover height={"350px"}>
+    <Carousel stopAutoPlayOnHover height={"360px"}>
       {photos.map((photo, index) => {
         return (
           <>
@@ -15,9 +14,8 @@ export default function CustomCarousel({ photos }) {
               height={400}
               alt={`photo${index}`}
               key={index}
-              className="rounded-xl"
+              className="!rounded-[5px]"
             />
-            <Typography>{photo}</Typography>
           </>
         );
       })}

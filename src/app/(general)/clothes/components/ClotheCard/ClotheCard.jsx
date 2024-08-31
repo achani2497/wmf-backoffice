@@ -7,10 +7,12 @@ import CustomButton from "@_shared/components/Button/Button";
 import CustomCard from "@_shared/components/Card/Card";
 import CustomCarousel from "@_shared/components/Carousel/Carousel";
 import DeleteModal from "@_shared/components/DeleteModal/DeleteModal";
+import IconButton from "@mui/material/IconButton";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 import { COLORS, ICONS } from "@_shared/export/constant";
 
-export default function ClotheCard({ clothe }) {
+export default function ClotheCard({ clothe, editingEvent }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
@@ -20,34 +22,34 @@ export default function ClotheCard({ clothe }) {
 
   return (
     <>
-      <CustomCard customClasses={"flex flex-col gap-4"}>
+      <CustomCard customClasses={"flex flex-col gap-4 !rounded-[5px] relative"}>
+        <IconButton
+          color={COLORS.RED}
+          sx={{ border: "1px solid #D3302F" }}
+          className={"!absolute !top-2 !right-2 !z-10 !bg-white"}
+        >
+          <DeleteOutlineIcon />
+        </IconButton>
         <div className="flex flex-col gap-4">
           <CustomCarousel photos={clothe.photos} />
           <Typography variant="h5">{clothe.name}</Typography>
           <Typography variant="body1">{clothe.description}</Typography>
         </div>
-        <div className="flex gap-4 !flex-wrap">
-          <CustomButton
-            variant={"outlined"}
-            color={COLORS.RED}
-            icon={ICONS.DELETE}
-            label={"Borrar prenda"}
-            customClasses={"flex-1"}
-            onClick={() => setOpen(true)}
-          />
-          <Link
-            href={`/clothes/${clothe.id}/edit?eventId=${clothe.eventId}`}
-            className="flex-1"
-          >
-            <CustomButton
-              variant={"contained"}
-              color={COLORS.BLUE}
-              icon={ICONS.EDIT}
-              label={"Editar prenda"}
-              customClasses={"flex-1 !w-full"}
-            />
-          </Link>
-        </div>
+        {!editingEvent && (
+          <div className="flex gap-4 flex-wrap xl:flex-nowrap">
+            <Link
+              href={`/clothes/${clothe.id}/edit?eventId=${clothe.eventId}`}
+              className="!flex-1"
+            >
+              <CustomButton
+                variant={"contained"}
+                color={COLORS.BLACK}
+                label={"Editar prenda"}
+                customClasses={"!text-xs !w-full"}
+              />
+            </Link>
+          </div>
+        )}
       </CustomCard>
       <DeleteModal
         open={open}

@@ -9,7 +9,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 export const BUTTON_ICONS = {
   ADD: <AddOutlinedIcon />,
-  DELETE: <DeleteOutlinedIcon />,
+  DELETE: <DeleteOutlinedIcon width={"10px"} />,
   EDIT: <EditOutlinedIcon />,
   CLOTHE: <CheckroomOutlinedIcon />,
 };
