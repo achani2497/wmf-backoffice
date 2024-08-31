@@ -5,6 +5,7 @@ import CustomButton from "@_shared/components/Button/Button";
 import CustomCard from "@_shared/components/Card/Card";
 import Typography from "@mui/material/Typography";
 import DeleteModal from "@_shared/components/DeleteModal/DeleteModal";
+import AnimatedButton from "@_shared/components/Button/AnimatedButton";
 
 import { COLORS, ICONS } from "@_shared/export/constant";
 
@@ -26,7 +27,9 @@ export default function EventCard({
 
   return (
     <>
-      <CustomCard customClasses={"flex justify-between items-center"}>
+      <CustomCard
+        customClasses={"flex justify-between items-center !rounded-[5px] !px-8"}
+      >
         <div className="w-fit flex flex-col gap-4">
           <div className="flex gap-1 items-center">
             <Typography variant="h6" fontWeight={"bold"} alignItems={"center"}>
@@ -50,25 +53,22 @@ export default function EventCard({
         <div className="flex gap-4">
           <Link href={`/events/${eventId}/`}>
             <CustomButton
-              color={COLORS.VIOLET}
-              variant={"outlined"}
+              color={COLORS.BLACK}
+              variant={"contained"}
               icon={ICONS.CLOTHE}
               label={"Ver prendas"}
             />
           </Link>
           <Link href={`/events/${eventId}/edit`}>
             <CustomButton
-              color={COLORS.LIGHT_BLUE}
+              color={COLORS.BLACK}
               variant={"outlined"}
               icon={ICONS.EDIT}
               label={"Editar evento"}
             />
           </Link>
-          <CustomButton
-            color={COLORS.RED}
-            variant={"outlined"}
-            icon={ICONS.DELETE}
-            label={"Eliminar evento"}
+          <AnimatedButton
+            label="Eliminar evento"
             onClick={() => handleModal()}
           />
         </div>

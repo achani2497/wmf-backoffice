@@ -13,7 +13,7 @@ export default function Home() {
       <div className="flex flex-col gap-8 items-start">
         <Link href={"/events/create"}>
           <CustomButton
-            color={COLORS.GREEN}
+            color={COLORS.BLACK}
             variant={"contained"}
             icon={ICONS.ADD}
             label={"Agregar evento"}

@@ -5,42 +5,57 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import CheckroomOutlinedIcon from "@mui/icons-material/CheckroomOutlined";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-const BUTTONS = {
+export const BUTTON_ICONS = {
   ADD: <AddOutlinedIcon />,
   DELETE: <DeleteOutlinedIcon />,
   EDIT: <EditOutlinedIcon />,
   CLOTHE: <CheckroomOutlinedIcon />,
 };
 
+const WMF_THEME = createTheme({
+  palette: {
+    black: {
+      main: "#000000",
+      contrastText: "#FFFFFF",
+    },
+    white: {
+      main: "#FFFFFF",
+      contrastText: "#000000",
+    },
+  },
+});
+
 export default function CustomButton({
   variant,
   color,
-  label,
+  label = "",
   icon,
   type = "button",
   customClasses,
   onClick,
 }) {
   return (
-    <Button
-      variant={variant}
-      color={color}
-      sx={{
-        display: "flex",
-        gap: 2,
-        width: "fit-content",
-        height: "fit-content",
-        borderRadius: 24,
-        fontWeight: "600",
-        paddingY: 1.5,
-      }}
-      className={customClasses}
-      onClick={onClick}
-      type={type}
-    >
-      {BUTTONS[icon]}
-      {`${label}`}
-    </Button>
+    <ThemeProvider theme={WMF_THEME}>
+      <Button
+        variant={variant}
+        color={color}
+        sx={{
+          display: "flex",
+          gap: 2,
+          width: "fit-content",
+          height: "fit-content",
+          fontWeight: "600",
+          paddingY: 1.5,
+        }}
+        className={`${customClasses} rounded-[5px]`}
+        onClick={onClick}
+        type={type}
+      >
+        {BUTTON_ICONS[icon]}
+        {`${label}`}
+      </Button>
+    </ThemeProvider>
   );
 }

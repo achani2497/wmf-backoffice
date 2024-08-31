@@ -3,6 +3,8 @@ export const COLORS = {
   RED: "error",
   BLUE: "info",
   VIOLET: "secondary",
+  BLACK: "black",
+  WHITE: "white",
 };
 
 export const ICONS = {
