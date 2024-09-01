@@ -5,7 +5,7 @@ export default function CustomCard({ children, customClasses, sx }) {
     <Card
       sx={{
         padding: 3,
-        borderRadius: 8,
+        borderRadius: "5px",
         width: "100%",
         borderColor: "rgba(0,0,0,.1)",
         borderWidth: 0.7,

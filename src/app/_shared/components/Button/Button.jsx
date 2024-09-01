@@ -5,13 +5,15 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import CheckroomOutlinedIcon from "@mui/icons-material/CheckroomOutlined";
+import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 export const BUTTON_ICONS = {
   ADD: <AddOutlinedIcon />,
-  DELETE: <DeleteOutlinedIcon width={"10px"} />,
+  DELETE: <DeleteOutlinedIcon />,
   EDIT: <EditOutlinedIcon />,
   CLOTHE: <CheckroomOutlinedIcon />,
+  SAVE: <SaveOutlinedIcon />,
 };
 
 const WMF_THEME = createTheme({

@@ -12,4 +12,5 @@ export const ICONS = {
   DELETE: "DELETE",
   EDIT: "EDIT",
   CLOTHE: "CLOTHE",
+  SAVE: "SAVE",
 };

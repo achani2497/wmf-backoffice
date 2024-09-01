@@ -1,25 +1,36 @@
 import CustomButton from "@_shared/components/Button/Button";
 import CustomModal from "@_shared/components/Modal/Modal";
+import Typography from "@mui/material/Typography";
 
-import { COLORS, ICONS } from "@_shared/export/constant";
+import { COLORS } from "@_shared/export/constant";
 
-export default function DeleteModal({ open, onClose, title, onDelete }) {
+export default function DeleteModal({
+  open,
+  onClose,
+  title,
+  subtitle,
+  onDelete,
+}) {
   return (
-    <CustomModal open={open} onClose={onClose} title={title}>
+    <CustomModal
+      open={open}
+      onClose={onClose}
+      title={title}
+      subtitle={subtitle}
+    >
       <div className="flex gap-4">
         <CustomButton
-          variant={"outlined"}
-          color={COLORS.BLUE}
+          variant={"text"}
+          color={COLORS.BLACK}
           label={"Cancelar"}
-          customClasses={"flex-1"}
+          customClasses={"flex-1 !underline !underline-offset-4"}
           onClick={onClose}
         />
         <CustomButton
-          variant={"contained"}
+          variant={"text"}
           color={COLORS.RED}
-          icon={ICONS.DELETE}
           label={"Eliminar"}
-          customClasses={"flex-1"}
+          customClasses={"flex-1 !underline !underline-offset-4"}
           onClick={onDelete}
         />
       </div>

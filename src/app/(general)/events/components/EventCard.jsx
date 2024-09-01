@@ -1,7 +1,6 @@
 import { useCallback, useState } from "react";
-import Link from "next/link";
 
-import CustomButton from "@_shared/components/Button/Button";
+import RedirectButton from "@_shared/components/Button/RedirectButton";
 import CustomCard from "@_shared/components/Card/Card";
 import Typography from "@mui/material/Typography";
 import DeleteModal from "@_shared/components/DeleteModal/DeleteModal";
@@ -51,22 +50,20 @@ export default function EventCard({
           </div>
         </div>
         <div className="flex gap-4">
-          <Link href={`/events/${eventId}/`}>
-            <CustomButton
-              color={COLORS.BLACK}
-              variant={"contained"}
-              icon={ICONS.CLOTHE}
-              label={"Ver prendas"}
-            />
-          </Link>
-          <Link href={`/events/${eventId}/edit`}>
-            <CustomButton
-              color={COLORS.BLACK}
-              variant={"outlined"}
-              icon={ICONS.EDIT}
-              label={"Editar evento"}
-            />
-          </Link>
+          <RedirectButton
+            color={COLORS.BLACK}
+            variant={"contained"}
+            icon={ICONS.CLOTHE}
+            label={"Ver prendas"}
+            url={`/events/${eventId}/`}
+          />
+          <RedirectButton
+            color={COLORS.BLACK}
+            variant={"outlined"}
+            icon={ICONS.EDIT}
+            label={"Editar evento"}
+            url={`/events/${eventId}/edit`}
+          />
           <AnimatedButton
             label="Eliminar evento"
             onClick={() => handleModal()}
@@ -78,6 +75,7 @@ export default function EventCard({
         onClose={() => setOpen(false)}
         onDelete={onDelete}
         title={`¿Desea eliminar el evento ${eventName}?`}
+        subtitle="Proceder con esta acción elimnará el evento de forma permanente"
       />
     </>
   );

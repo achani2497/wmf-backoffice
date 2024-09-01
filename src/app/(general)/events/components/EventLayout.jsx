@@ -6,6 +6,10 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import ClotheCard from "@(general)/clothes/components/ClotheCard/ClotheCard";
 import SkeletonLoader from "@_shared/components/SkeletonLoader/SkeletonLoader";
+import CustomButton from "@_shared/components/Button/Button";
+import RedirectButton from "@_shared/components/Button/RedirectButton";
+
+import { COLORS, ICONS } from "@_shared/export/constant";
 
 export default function EventLayout({
   isEditing = false,
@@ -45,22 +49,39 @@ export default function EventLayout({
               sx={{ fontSize: "25px", fontWeight: "400" }}
               initialValue={event?.eventBrand}
             />
-            <div className="flex gap-8">
-              <FormInput
-                label={"Nombre del evento"}
-                fieldId={"eventName"}
-                type="text"
-                sx={{ fontSize: "34px", fontWeight: "500" }}
-                initialValue={event?.eventName}
-              />
-              <FormInput
-                label={"Fecha del evento"}
-                fieldId={"eventDate"}
-                type="date"
-                initialValue={event?.eventDate}
-                sx={{ fontSize: "34px", fontWeight: "500" }}
-                width="240px"
-              />
+            <div className="flex justify-between">
+              <div className="flex gap-8">
+                <FormInput
+                  label={"Nombre del evento"}
+                  fieldId={"eventName"}
+                  type="text"
+                  sx={{ fontSize: "34px", fontWeight: "500" }}
+                  initialValue={event?.eventName}
+                />
+                <FormInput
+                  label={"Fecha del evento"}
+                  fieldId={"eventDate"}
+                  type="date"
+                  initialValue={event?.eventDate}
+                  sx={{ fontSize: "34px", fontWeight: "500" }}
+                  width="240px"
+                />
+              </div>
+              <div className="flex gap-4 my-auto">
+                <CustomButton
+                  variant="contained"
+                  color={COLORS.BLACK}
+                  label="Guardar"
+                  icon={ICONS.SAVE}
+                  customClasses="!my-auto"
+                />
+                <RedirectButton
+                  variant={"outlined"}
+                  color={COLORS.RED}
+                  label={"Cancelar"}
+                  url={`/events/${event.eventId}`}
+                />
+              </div>
             </div>
           </form>
         </FormProvider>
@@ -69,12 +90,29 @@ export default function EventLayout({
           <Typography variant="h5" className="!tracking-wider !text-[25px]">
             {event.eventBrand}{" "}
           </Typography>
-          <Typography
-            variant="h4"
-            className="!tracking-normal !text-[34px] !font-medium"
-          >
-            {`${event.eventName} - ${event.eventDate}`}
-          </Typography>
+          <div className="flex justify-between">
+            <Typography
+              variant="h4"
+              className="!tracking-normal !text-[34px] !font-medium"
+            >
+              {`${event.eventName} - ${event.eventDate}`}
+            </Typography>
+            <div className="flex gap-4">
+              <CustomButton
+                variant="contained"
+                color={COLORS.BLACK}
+                label="Crear prenda"
+                icon={ICONS.ADD}
+                customClasses="!my-auto"
+              />
+              <RedirectButton
+                variant={"outlined"}
+                color={COLORS.BLACK}
+                label={"Editar evento"}
+                url={`/events/${event.eventId}/edit`}
+              />
+            </div>
+          </div>
         </div>
       )}
       <Suspense fallback={<SkeletonLoader />}>
