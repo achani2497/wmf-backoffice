@@ -16,7 +16,21 @@ const FileDropzone = ({
 }) => {
   const [filePreviews, setFilePreviews] = useState(initialValue || []);
 
-  console.log(filePreviews);
+  // Hook useDropzone, fuera del render prop de Controller
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop: (acceptedFiles) => {
+      // Crear vistas previas para los archivos
+      const previews = acceptedFiles.map((file) => ({
+        file,
+        preview: URL.createObjectURL(file),
+      }));
+      setFilePreviews((prev) => [...prev, ...previews]);
+
+      // Actualizar el valor del campo en el formulario usando field.onChange más adelante
+    },
+    accept: "image/*",
+    multiple: true, // Habilitar múltiples archivos
+  });
 
   useEffect(() => {
     // Limpiar los previews cuando cambie el valor del formulario o se resetee
@@ -32,22 +46,6 @@ const FileDropzone = ({
       defaultValue={initialValue || []}
       rules={validations}
       render={({ field }) => {
-        const { getRootProps, getInputProps, isDragActive } = useDropzone({
-          onDrop: (acceptedFiles) => {
-            // Actualizar el valor del campo en el formulario
-            field.onChange([...field.value, ...acceptedFiles]);
-
-            // Crear vistas previas para los archivos
-            const previews = acceptedFiles.map((file) => ({
-              file,
-              preview: URL.createObjectURL(file),
-            }));
-            setFilePreviews([...filePreviews, ...previews]);
-          },
-          accept: "image/*",
-          multiple: true, // Habilitar múltiples archivos
-        });
-
         return (
           <Box
             {...getRootProps()}
@@ -66,7 +64,19 @@ const FileDropzone = ({
             }}
           >
             {/* Input para abrir el buscador de archivos al hacer clic */}
-            <input {...getInputProps()} />
+            <input
+              {...getInputProps()}
+              onChange={(e) => {
+                // Cuando se seleccionan archivos manualmente
+                const files = Array.from(e.target.files);
+                const previews = files.map((file) => ({
+                  file,
+                  preview: URL.createObjectURL(file),
+                }));
+                setFilePreviews((prev) => [...prev, ...previews]);
+                field.onChange([...field.value, ...files]);
+              }}
+            />
 
             {isDragActive ? (
               <Typography variant="body1" color="rgba(0,0,0,.6)">
