@@ -9,7 +9,7 @@ export default function CustomCarousel({ photos }) {
         return (
           <>
             <Image
-              src={"https://picsum.photos/400/400"}
+              src={`/vestidos/${photo}`}
               width={400}
               height={400}
               alt={`photo${index}`}

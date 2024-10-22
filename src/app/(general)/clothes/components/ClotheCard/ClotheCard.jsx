@@ -11,7 +11,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 import { COLORS } from "@_shared/export/constant";
 
-export default function ClotheCard({ clothe, editingEvent }) {
+export default function ClotheCard({ clothe, editingEvent, onEdit }) {
   const [open, setOpen] = useState(false);
 
   const onDelete = useCallback(() => {
@@ -36,17 +36,13 @@ export default function ClotheCard({ clothe, editingEvent }) {
         </div>
         {!editingEvent && (
           <div className="flex gap-4 flex-wrap xl:flex-nowrap">
-            <Link
-              href={`/clothes /${clothe.id}/edit?eventId=${clothe.eventId}`}
-              className="!flex-1"
-            >
-              <CustomButton
-                variant={"contained"}
-                color={COLORS.BLACK}
-                label={"Editar prenda"}
-                customClasses={"!text-xs !w-full"}
-              />
-            </Link>
+            <CustomButton
+              variant={"contained"}
+              color={COLORS.BLACK}
+              label={"Editar prenda"}
+              customClasses={"!text-xs !w-full"}
+              onClick={() => onEdit(clothe.id)}
+            />
           </div>
         )}
       </CustomCard>

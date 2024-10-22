@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 import FormInput from "@_shared/components/Input/Input";
@@ -8,8 +8,11 @@ import ClotheCard from "@(general)/clothes/components/ClotheCard/ClotheCard";
 import SkeletonLoader from "@_shared/components/SkeletonLoader/SkeletonLoader";
 import CustomButton from "@_shared/components/Button/Button";
 import RedirectButton from "@_shared/components/Button/RedirectButton";
+import CustomModal from "@_shared/components/Modal/Modal";
+import ClotheForm from "@_shared/components/ClotheForm/ClotheForm";
 
 import { COLORS, ICONS } from "@_shared/export/constant";
+import { prendas } from "@_shared/export/clothes";
 
 export default function EventLayout({
   isEditing = false,
@@ -18,13 +21,18 @@ export default function EventLayout({
   onSubmit = () => {},
 }) {
   const methods = useForm({ defaultValues: { ...event } });
+  const [clotheToEdit, setClotheToEdit] = useState(null);
+  const [createClotheOpen, setCreateClotheModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
 
   const onDelete = (clothe) => {
     console.log(clothe);
   };
 
   const onEdit = (clotheId) => {
-    console.log(clotheId);
+    const clotheToSet = prendas.find((prenda) => prenda.id == clotheId);
+    setClotheToEdit(clotheToSet);
+    setEditModalOpen(true);
   };
 
   useEffect(() => {
@@ -104,6 +112,7 @@ export default function EventLayout({
                 label="Crear prenda"
                 icon={ICONS.ADD}
                 customClasses="!my-auto"
+                onClick={() => setCreateClotheModalOpen(true)}
               />
               <RedirectButton
                 variant={"outlined"}
@@ -113,6 +122,30 @@ export default function EventLayout({
               />
             </div>
           </div>
+          {/* Create clothe modal */}
+          <CustomModal
+            open={createClotheOpen}
+            onClose={() => setCreateClotheModalOpen(false)}
+            title={`Crear prenda`}
+          >
+            <ClotheForm
+              onSubmit={() => console.log("asd")}
+              onClose={() => setCreateClotheModalOpen(false)}
+            />
+          </CustomModal>
+          {/* Edit clothe modal */}
+          <CustomModal
+            open={editModalOpen}
+            onClose={() => setEditModalOpen(false)}
+            title={`Editar prenda ${clotheToEdit?.name}`}
+          >
+            <ClotheForm
+              clothe={clotheToEdit}
+              isEditing
+              onSubmit={() => console.log("asd")}
+              onClose={() => setEditModalOpen(false)}
+            />
+          </CustomModal>
         </div>
       )}
       <Suspense fallback={<SkeletonLoader />}>

@@ -14,15 +14,19 @@ export default function CustomModal({
       open={open}
       onClose={onClose}
       sx={{ backgroundColor: "rgba(0,0,0,.5)" }}
+      className="overflow-y-scroll !py-8"
     >
       <CustomCard
-        customClasses={"!w-fit flex flex-col gap-4"}
+        customClasses={
+          "!w-fit flex flex-col gap-4 !overflow-y-scroll !max-height-[600px]"
+        }
+        className=""
         sx={{
           position: "absolute",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          maxWidth: "500px",
+          maxWidth: "800px",
         }}
       >
         <Typography

@@ -67,11 +67,12 @@ export default function FormInput({
   sx,
   customClasses,
   width = "400px",
+  revert = false,
 }) {
   const { register, formState } = useFormContext();
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className={`flex gap-1 ${revert ? "flex-col-reverse" : "flex-col"}`}>
       {type == "textarea" ? (
         <TextField
           id={fieldId}
