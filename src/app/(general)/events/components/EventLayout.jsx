@@ -55,7 +55,7 @@ export default function EventLayout({
               fieldId={"eventBrand"}
               type="text"
               sx={{ fontSize: "25px", fontWeight: "400" }}
-              initialValue={event?.eventBrand}
+              initialValue={event?.brand}
             />
             <div className="flex justify-between">
               <div className="flex gap-8">
@@ -64,13 +64,13 @@ export default function EventLayout({
                   fieldId={"eventName"}
                   type="text"
                   sx={{ fontSize: "34px", fontWeight: "500" }}
-                  initialValue={event?.eventName}
+                  initialValue={event?.name}
                 />
                 <FormInput
                   label={"Fecha del evento"}
                   fieldId={"eventDate"}
                   type="date"
-                  initialValue={event?.eventDate}
+                  initialValue={event?.date}
                   sx={{ fontSize: "34px", fontWeight: "500" }}
                   width="240px"
                 />
@@ -87,7 +87,7 @@ export default function EventLayout({
                   variant={"outlined"}
                   color={COLORS.RED}
                   label={"Cancelar"}
-                  url={`/events/${event.eventId}`}
+                  url={`/events/${event.id}`}
                 />
               </div>
             </div>
@@ -96,14 +96,14 @@ export default function EventLayout({
       ) : (
         <div className="flex flex-col gap-2">
           <Typography variant="h5" className="!tracking-wider !text-[25px]">
-            {event.eventBrand}{" "}
+            {event.brand}{" "}
           </Typography>
           <div className="flex justify-between">
             <Typography
               variant="h4"
               className="!tracking-normal !text-[34px] !font-medium"
             >
-              {`${event.eventName} - ${event.eventDate}`}
+              {`${event.name} - ${event.date}`}
             </Typography>
             <div className="flex gap-4">
               <CustomButton
@@ -118,7 +118,7 @@ export default function EventLayout({
                 variant={"outlined"}
                 color={COLORS.BLACK}
                 label={"Editar evento"}
-                url={`/events/${event.eventId}/edit`}
+                url={`/events/${event.id}/edit`}
               />
             </div>
           </div>
@@ -159,6 +159,7 @@ export default function EventLayout({
                     onDelete={onDelete}
                     onEdit={onEdit}
                     editingEvent={isEditing}
+                    eventId={event.id}
                   />
                 </Grid>
               );

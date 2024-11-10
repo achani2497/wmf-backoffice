@@ -11,7 +11,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 import { COLORS } from "@_shared/export/constant";
 
-export default function ClotheCard({ clothe, editingEvent, onEdit }) {
+export default function ClotheCard({ clothe, editingEvent, onEdit, eventId }) {
   const [open, setOpen] = useState(false);
 
   const onDelete = useCallback(() => {
@@ -20,7 +20,9 @@ export default function ClotheCard({ clothe, editingEvent, onEdit }) {
 
   return (
     <>
-      <CustomCard customClasses={"flex flex-col gap-4 !rounded-[5px] relative"}>
+      <CustomCard
+        customClasses={"flex flex-col gap-4 !rounded-[5px] relative max-h-"}
+      >
         <IconButton
           color={COLORS.RED}
           sx={{ border: "1px solid #D3302F" }}
@@ -29,10 +31,17 @@ export default function ClotheCard({ clothe, editingEvent, onEdit }) {
         >
           <DeleteOutlineIcon />
         </IconButton>
-        <div className="flex flex-col gap-4">
-          <CustomCarousel photos={clothe.photos} />
-          <Typography variant="h5">{clothe.name}</Typography>
-          <Typography variant="body1">{clothe.description}</Typography>
+        <div className="flex justify-center flex-col gap-4">
+          <CustomCarousel
+            photos={clothe.photos || clothe.images}
+            areLocalImages={clothe.photos && clothe.photos.length > 0}
+            eventId={eventId}
+            itemId={clothe.id}
+          />
+          <div className="flex flex-col !max-h-[9.6rem] overflow-auto">
+            <Typography variant="h5">{clothe.name}</Typography>
+            <Typography variant="body1">{clothe.description}</Typography>
+          </div>
         </div>
         {!editingEvent && (
           <div className="flex gap-4 flex-wrap xl:flex-nowrap">

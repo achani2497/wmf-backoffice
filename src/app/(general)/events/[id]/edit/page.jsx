@@ -13,15 +13,16 @@ export default function EditEvent({ params }) {
 
   useEffect(() => {
     if (!params.id) return;
-    const evento = eventos.find((ev) => ev.eventId == params.id);
+    const evento = eventos.find((ev) => ev.id == params.id);
     setEvent(evento);
-    const ropa = prendas.filter((prenda) => prenda.eventId == evento.eventId);
+    console.log(evento);
+    const ropa = prendas.filter((prenda) => prenda.eventId == evento.id);
     setClothes(ropa);
     setLoaded(true);
   }, [params]);
 
   useEffect(() => {
-    const eventToSet = eventos.find((evento) => evento.eventId == params.id);
+    const eventToSet = eventos.find((evento) => evento.id == params.id);
     setEvent(eventToSet);
   }, [params]);
 

@@ -1,22 +1,23 @@
-import Image from "next/image";
-
 import Carousel from "react-material-ui-carousel";
+import CarousuelImage from "./CarouselImage";
 
-export default function CustomCarousel({ photos }) {
+export default function CustomCarousel({
+  photos,
+  areLocalImages,
+  eventId,
+  itemId,
+}) {
   return (
-    <Carousel stopAutoPlayOnHover height={"360px"}>
+    <Carousel stopAutoPlayOnHover height={"250px"}>
       {photos.map((photo, index) => {
         return (
-          <>
-            <Image
-              src={`/vestidos/${photo}`}
-              width={400}
-              height={400}
-              alt={`photo${index}`}
-              key={index}
-              className="!rounded-[5px]"
-            />
-          </>
+          <CarousuelImage
+            photo={photo}
+            isLocal={areLocalImages}
+            key={index}
+            eventId={eventId}
+            clotheId={itemId}
+          />
         );
       })}
     </Carousel>
