@@ -15,6 +15,8 @@ export default function ClotheForm({ clothe, isEditing, onSubmit, onClose }) {
   const router = useSearchParams();
   const { filesWithPreviews, loading } = usePhotosAsFiles(clothe?.photos);
 
+  console.log(clothe);
+
   useEffect(() => {
     if (clothe) {
       methods.reset(clothe);
