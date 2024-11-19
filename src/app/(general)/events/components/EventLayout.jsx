@@ -30,7 +30,8 @@ export default function EventLayout({
   };
 
   const onEdit = (clotheId) => {
-    const clotheToSet = prendas.find((prenda) => prenda.id == clotheId);
+    console.log(clothes);
+    const clotheToSet = clothes.find((prenda) => prenda.id == clotheId);
     setClotheToEdit(clotheToSet);
     setEditModalOpen(true);
   };
