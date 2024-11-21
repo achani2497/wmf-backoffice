@@ -58,7 +58,7 @@ export default function EventForm({ event, isEditing, onSubmit }) {
             </Link>
             <CustomButton
               type="submit"
-              color={COLORS.GREEN}
+              color={COLORS.BLACK}
               variant={"contained"}
               label={isEditing ? "Guardar cambios" : "Crear evento"}
               customClasses={"flex-1"}

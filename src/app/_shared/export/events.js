@@ -2,7 +2,7 @@ export const eventos = [
   {
     id: 1,
     name: "Virgilio Madinah",
-    date: "2024-10-27T19:00:00Z",
+    date: "2024-07-21T19:00:00Z",
     brand: "Bridal Runaway Latam",
     collection: "VIRGILIOMADINAH Novias Primavera / Verano 2025",
   },
