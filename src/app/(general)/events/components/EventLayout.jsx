@@ -13,6 +13,7 @@ import ClotheForm from "@_shared/components/ClotheForm/ClotheForm";
 
 import { COLORS, ICONS } from "@_shared/export/constant";
 import { prendas } from "@_shared/export/clothes";
+import { parseDate, formatDateToEdit } from "../../../../utils/Date";
 
 export default function EventLayout({
   isEditing = false,
@@ -30,7 +31,6 @@ export default function EventLayout({
   };
 
   const onEdit = (clotheId) => {
-    console.log(clothes);
     const clotheToSet = clothes.find((prenda) => prenda.id == clotheId);
     setClotheToEdit(clotheToSet);
     setEditModalOpen(true);
@@ -71,7 +71,7 @@ export default function EventLayout({
                   label={"Fecha del evento"}
                   fieldId={"eventDate"}
                   type="date"
-                  initialValue={event?.date}
+                  initialValue={formatDateToEdit(event?.date)}
                   sx={{ fontSize: "34px", fontWeight: "500" }}
                   width="240px"
                 />
@@ -104,7 +104,7 @@ export default function EventLayout({
               variant="h4"
               className="!tracking-normal !text-[34px] !font-medium"
             >
-              {`${event.name} - ${event.date}`}
+              {`${event.name} - ${parseDate(event.date)}`}
             </Typography>
             <div className="flex gap-4">
               <CustomButton

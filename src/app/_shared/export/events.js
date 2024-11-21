@@ -2,16 +2,16 @@ export const eventos = [
   {
     id: 1,
     name: "Virgilio Madinah",
-    date: "15/03/2024",
+    date: "2024-10-27T19:00:00Z",
     brand: "Bridal Runaway Latam",
     collection: "VIRGILIOMADINAH Novias Primavera / Verano 2025",
   },
-  // {
-  //   eventId: 2,
-  //   eventName: "Autumn Elegance Show",
-  //   eventDate: "22/09/2024",
-  //   eventBrand: "Dior",
-  // },
+  {
+    id: 6,
+    name: "WMF Demo 2024",
+    date: "2024-11-21T19:00:00Z",
+    brand: "WMF",
+  },
   // {
   //   eventId: 3,
   //   eventName: "Winter Wonderland Runway",

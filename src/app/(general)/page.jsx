@@ -9,21 +9,22 @@ import Spinner from "@_shared/components/Spinner/spinner";
 import { useContext, useEffect, useState } from "react";
 import { eventos } from "@_shared/export/events";
 import { SessionContext } from "@contexts/userContext";
+import { parseDate } from "../../utils/Date";
 
 export default function Home() {
   const { events: fetchedEvents, isLoading, isFetching } = useGetEvents();
   const [mappedEvents, setMappedEvents] = useState([]);
   const { events, addNewEvents } = useContext(SessionContext);
 
-  useEffect(() => {
-    if (fetchedEvents) {
-      addNewEvents(fetchedEvents);
-    } else {
-      setMappedEvents(eventos);
-    }
-  }, [fetchedEvents, addNewEvents]);
+  // useEffect(() => {
+  //   if (fetchedEvents) {
+  //     addNewEvents(fetchedEvents);
+  //   } else {
+  //     setMappedEvents(eventos);
+  //   }
+  // }, [fetchedEvents, addNewEvents]);
 
-  if (isLoading || isFetching) {
+  if (isLoading) {
     return <Spinner label={"Cargando eventos"} isLoading={isLoading} />;
   }
 
@@ -42,12 +43,19 @@ export default function Home() {
             <EventCard
               eventId={evento.id}
               eventName={evento.name}
-              eventDate={evento.date}
+              eventDate={parseDate(evento.date)}
               eventBrand={evento.brand || evento.collection || evento.name}
               key={index}
             />
           );
         })}
+        {/* <EventCard
+          eventId={6}
+          eventName={evento.name}
+          eventDate={evento.date}
+          eventBrand={evento.brand || evento.collection || evento.name}
+          key={index}
+        /> */}
       </div>
     </>
   );
